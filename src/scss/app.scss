@@ -1,0 +1,48 @@
+@import "./node_modules/materialize-css/sass/materialize.scss";
+
+@import "components/console.scss";
+@import "flex-helpers.scss";
+@import "helpers.scss";
+@import "variables.scss";
+
+nav {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0 15px;
+    height: auto;
+
+    .brand-logo {
+	position: initial;
+	transform: none;
+    }
+
+    .controls {
+	min-width: 300px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex: 1;
+
+	.user-info {
+	    display: flex;
+	    align-items: center;
+	    margin-right: 15px;
+	    .user-icon {
+		max-height: 40px;
+		margin-right: 10px;
+	    }
+	}
+    }
+
+    @media only screen and (max-device-width: 500px) {
+	.brand-logo {
+	    min-width: 100%;
+	    text-align: center;
+	}
+	.controls {
+	    min-width: 100%;
+	    justify-content: center;
+	}
+    }
+}

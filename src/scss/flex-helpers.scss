@@ -1,0 +1,61 @@
+.flex {
+    display: flex;
+}
+
+@mixin direction($dir){
+    .#{$dir}{
+	flex-direction: $dir;
+    }
+}
+
+@mixin justify($justification, $prefix:""){
+    .justify-#{$justification}{
+	justify-content: #{$prefix}#{$justification};
+    }
+}
+
+@mixin align($alignment, $prefix:""){
+    .align-#{$alignment}{
+	align-items: #{$prefix}#{$alignment};
+    }
+}
+
+@mixin align-self($alignment, $prefix:""){
+    .align-self-#{$alignment}{
+	align-self: #{$prefix}#{$alignment};
+    }
+}
+
+@include direction(column);
+@include direction(row);
+
+@include justify(start, "flex-");
+@include justify(end, "flex-");
+@include justify(center);
+@include justify(space-around);
+@include justify(space-between);
+
+@include align(start, "flex-");
+@include align(end, "flex-");
+@include align(center);
+@include align(baseline);
+@include align(stretch);
+
+@include align-self(start, "flex-");
+@include align-self(end, "flex-");
+@include align-self(center);
+@include align-self(baseline);
+@include align-self(stretch);
+
+$i: 1;
+@while ($i <= 12) {
+    .flex-#{$i}{
+	flex: $i;
+    }
+    $i: $i + 1;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
