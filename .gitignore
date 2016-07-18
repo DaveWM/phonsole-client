@@ -15,3 +15,6 @@ pom.xml
 node_modules
 *~
 .cljs_rhino_repl
+
+resources/public/js
+resources/public/css
