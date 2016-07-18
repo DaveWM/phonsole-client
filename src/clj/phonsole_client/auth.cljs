@@ -16,8 +16,8 @@
   (if-let [hash  (->> js/window
                       .-location
                       .-hash
-                      (.parseHash lock))]
-    (.-id_token hash)))
+                      (.parseHash lock))] 
+    (aget hash "id_token")))
 
 (defn get-token []
   (.getItem js/localStorage (name user-token-key)))
