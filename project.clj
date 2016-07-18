@@ -11,7 +11,6 @@
                  [org.clojure/core.async "0.2.374" :exclusions [org.clojure/tools.reader]]
                  [re-frame "0.7.0"]
                  [reagent "0.6.0-alpha2"]
-                 [reagent-material-ui "0.2.2"]
                  [cljsjs/auth0-lock "8.3.2-2"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
