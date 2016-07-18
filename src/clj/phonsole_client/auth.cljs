@@ -8,7 +8,6 @@
 (defn show-lock! []
   (print "showing lock")
   (.show lock #js {:closable false
-                   :callbackURL "http://localhost:8000/"
                    :responseType "token"}))
 
 (defn parse-id-token []
