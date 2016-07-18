@@ -16,7 +16,8 @@
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
                  [com.taoensso/sente "1.8.1"]]
-  :npm {:dependencies [[materialize-css "0.97.6"]]}
+  :npm {:dependencies [[materialize-css "0.97.6"]
+                       [node-sass "3.8.0"]]}
   
   :plugins [[lein-figwheel "0.5.3-2"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]
