@@ -10,6 +10,5 @@
        [:h2 "All Connected Consoles"]
        [:div {:class "flex align-space-around wrap"}
         (map #(identity
-               [:div {:class "flex-1 padded-horizontal"}
-                (console % [])])
+               (console % []))
              @clients)]])))

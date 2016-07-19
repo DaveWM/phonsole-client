@@ -5,6 +5,10 @@
 @import "helpers.scss";
 @import "variables.scss";
 
+html,body {
+    overflow-x: hidden;
+}
+
 nav {
     display: flex;
     justify-content: flex-start;

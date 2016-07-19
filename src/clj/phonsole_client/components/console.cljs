@@ -9,16 +9,17 @@
         (map #(identity [:p {:class "line"} %]))))])
 
 (defn console [client output]
-  [:div {:class "console card"}
-   (console-output output)
-   [:div {:class "card-content"}
-    [:p {:class "card-title"} (:client-id client)]]
-   [:div {:class "card-action"}
-    [:i {:class "material-icons icon-action"
-         :on-click #(-> %
-                        .-target
-                        .-parentElement
-                        .-parentElement
-                        .webkitRequestFullscreen)}
-     "open_with"]]
+  [:div {:class "console"}
+   [:div {:class "card"}
+    (console-output output)
+    [:div {:class "card-content"}
+     [:p {:class "card-title"} (:client-id client)]]
+    [:div {:class "card-action"}
+     [:i {:class "material-icons icon-action"
+          :on-click #(-> %
+                         .-target
+                         .-parentElement
+                         .-parentElement
+                         .webkitRequestFullscreen)}
+      "open_with"]]]
    ])

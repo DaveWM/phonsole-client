@@ -1,7 +1,10 @@
 .console {
     display: flex;
     flex-direction: column;
-    min-width: 480px;
+    flex-basis: 400px;
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 15px;
     &:-webkit-full-screen {
 	width: 100%;
 	height: 100%;
