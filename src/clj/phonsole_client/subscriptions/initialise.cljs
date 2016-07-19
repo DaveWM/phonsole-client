@@ -14,7 +14,7 @@
   (let [result  (->> localstorage-keys
                      (reduce (fn [result key] (assoc result
                                                      key
-                                                     (.getItem js/localStorage key)))
+                                                     (.getItem js/localStorage (name key))))
                              db)
                      (merge initial-state))]
     (if-let [id-token (or (auth/user-token-key result)
