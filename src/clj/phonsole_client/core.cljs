@@ -3,6 +3,7 @@
             [re-frame.core :refer [subscribe register-sub dispatch dispatch-sync register-handler]]
             [phonsole-client.routing :as routing]
             [phonsole-client.subscriptions.register :refer [register]]
+            [phonsole-client.components.connection-status :refer [connection-status]]
             [goog.events :as events])
   (:require-macros [reagent.ratom :refer [reaction]]))
 
@@ -16,7 +17,8 @@
 
 (defn root-component []
   (let [page (subscribe [:page])
-        user (subscribe [:user-details])]
+        user (subscribe [:user-details])
+        connection-state (subscribe [:connection-state])]
     (fn []
       [:div
        [:nav {:class "purple"}
@@ -24,6 +26,7 @@
              :href "/"}
          "Phonsole"]
         [:ul {:class "controls"}
+         (connection-status {:class "connection"} (:open? @connection-state))
          [:span {:class "user-info"}
           [:img {:src (:picture @user) :class "circle responsive-img user-icon"}]
           [:span (:name @user)]]

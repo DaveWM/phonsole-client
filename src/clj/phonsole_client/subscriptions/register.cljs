@@ -3,7 +3,8 @@
             [phonsole-client.subscriptions.auth :as auth]
             [phonsole-client.subscriptions.consoles :as consoles]
             [phonsole-client.subscriptions.initialise :as init]
-            [phonsole-client.subscriptions.routing :as routing])
+            [phonsole-client.subscriptions.routing :as routing]
+            [phonsole-client.subscriptions.connection :as connection])
   (:require-macros [phonsole-client.macros.register-sub-functions :refer [register-subs register-handlers]]))
 
 (defn register []
@@ -13,7 +14,9 @@
                      [:sender consoles/output]
                      consoles/remove-console
                      init/initialise
-                     routing/set-page)
+                     routing/set-page
+                     connection/connection-state-changed)
   (register-subs auth/user-details
                  consoles/connected-consoles
-                 routing/page))
+                 routing/page
+                 connection/connection-state))

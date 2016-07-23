@@ -33,5 +33,7 @@
                              (when (contains? allowed-event-types id)
                                (dispatch ?data)))))
                        (recur))]
+      (add-watch chsk-state :connection #(dispatch [:connection-state-changed @chsk-state]))
+      
       (reset! channel chsk)
       )))
