@@ -11,6 +11,8 @@
     width: $size;
     height: $size;
 
+    cursor: default;
+    
     transition: 0.5s background-color ease;
 
     &.connected {

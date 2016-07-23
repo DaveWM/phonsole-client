@@ -2,4 +2,5 @@
 
 (defn connection-status [connected]
   [:span {:class (str "connection-status " (when connected "connected"))}
-   [:i {:class "material-icons"} (if connected "network_wifi" "signal_wifi_off")]])
+   [:i {:class "material-icons" :title (if connected "Connected" "Disconnected")}
+    (if connected "network_wifi" "signal_wifi_off")]])
