@@ -1,0 +1,20 @@
+.connection-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f44336;
+    color:white;
+    padding: 5px;
+    border-radius: 50%;
+
+    $size: 45px;
+    width: $size;
+    height: $size;
+
+    transition: 0.5s background-color ease;
+
+    &.connected {
+	background-color: #76ff03;
+	color: white;
+    }
+}
