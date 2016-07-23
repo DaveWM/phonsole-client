@@ -10,7 +10,8 @@
   (register-handlers auth/profile-retrieved
                      auth/log-out
                      [:clients consoles/connected]
-                     [:output consoles/output]
+                     [:sender consoles/output]
+                     consoles/remove-console
                      init/initialise
                      routing/set-page)
   (register-subs auth/user-details

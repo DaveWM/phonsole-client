@@ -11,6 +11,6 @@
        [:div {:class "flex align-space-around wrap"}
         (if (empty? @clients)
           [:p "No Consoles connected"]
-          (map #(identity
-                      (console %))
+          (map (fn [[client-id client]]
+                      (console client))
                     @clients))]])))
