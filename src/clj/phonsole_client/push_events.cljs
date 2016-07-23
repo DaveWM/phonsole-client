@@ -23,7 +23,8 @@
                                                                                                           {:type :auto
                                                                                                            :host (or (env-var :server-url)
                                                                                                                      "localhost:8080")
-                                                                                                           :params {:Authorization token}})
+                                                                                                           :params {:Authorization token
+                                                                                                                    :is-viewer true}})
           event-loop (go-loop []
                        (let [{:keys [id ?data]}  (<! ch-chsk)]
                          (println id ?data)
