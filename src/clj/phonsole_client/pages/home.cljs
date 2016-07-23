@@ -9,6 +9,8 @@
       [:div
        [:h2 "All Connected Consoles"]
        [:div {:class "flex align-space-around wrap"}
-        (map #(identity
-               (console % []))
-             @clients)]])))
+        (if (empty? @clients)
+          [:p "No Consoles connected"]
+          (map #(identity
+                      (console %))
+                    @clients))]])))
