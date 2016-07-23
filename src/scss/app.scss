@@ -8,6 +8,13 @@
 
 html,body {
     overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
 }
 
 nav {
@@ -59,4 +66,18 @@ nav {
 .btn.btn-flat:hover{
     background-color: #9c27b0;
     color: white;
+}
+
+.loading-background {
+    background-color: #ba68c8;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .spinner-layer {
+	border-color: #9c27b0;
+    }
 }
