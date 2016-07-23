@@ -21,7 +21,8 @@
   
   :plugins [[lein-figwheel "0.5.3-2"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]
-            [lein-npm "0.6.2"]]
+            [lein-npm "0.6.2"]
+            [lein-resource "15.10.2"]]
 
   :source-paths ["src"]
 
@@ -84,6 +85,8 @@
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
              }
 
+  :resource {:resource-paths ["src/js"]
+             :target-path "resources/public/js"}
  
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:
