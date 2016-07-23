@@ -12,5 +12,5 @@
         (if (empty? @clients)
           [:p "No Consoles connected"]
           (map (fn [[client-id client]]
-                      (console client))
+                 [console client])
                     @clients))]])))
