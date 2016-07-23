@@ -14,14 +14,15 @@
   (println (:disconnected? client))
   [:div {:class "console"}
    [:div {:class "card"}
-    (console-output (:output client))
+    [:div {:class "output-container"}
+     (console-output (:output client))]
     [:div {:class "card-content"}
      [:p {:class "card-title"}
       [:span {:class "margin-horizontal"} (:client-id client)]
       (connection-status (not (:disconnected? client)))]]
     [:div {:class "card-action"}
      (when (:disconnected? client)
-       [:button {:class "btn btn-flat waves-purple"
+       [:button {:class "btn btn-flat"
                  :on-click #(dispatch [:remove-console (:client-id client)])}
         "Close"])
      [:span {:class "fill"}]

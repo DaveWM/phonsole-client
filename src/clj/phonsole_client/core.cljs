@@ -26,7 +26,7 @@
              :href "/"}
          "Phonsole"]
         [:ul {:class "controls"}
-         (connection-status {:class "connection"} (:open? @connection-state))
+         (connection-status (:open? @connection-state))
          [:span {:class "user-info"}
           [:img {:src (:picture @user) :class "circle responsive-img user-icon"}]
           [:span (:name @user)]]
@@ -50,3 +50,4 @@
   (main)
  )
 (main)
+
