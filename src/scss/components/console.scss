@@ -22,17 +22,24 @@
 	position: relative;
 	padding: 10px 20px;
 	min-height: 350px;
+	max-height: 500px;
+	overflow: auto;
 	.line {
 	    margin: 0;
 	    font-size: 18px;
 	}
     }
-
+    
     .card-action {
 	display: flex;
 	justify-content: flex-start;
 	.icon-action {
 	    cursor: pointer;
 	}
+    }
+
+    .card-title {
+	display: flex;
+	align-items: center;
     }
 }
