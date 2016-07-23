@@ -5,7 +5,7 @@
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]
                    [phonsole-client.macros.env-vars :refer [env-var]]))
 
-(def allowed-event-types #{:clients/connected})
+(def allowed-event-types #{:clients/connected :sender/output})
 
 (defonce channel (atom nil))
 
