@@ -27,6 +27,14 @@ nav {
     .brand-logo {
 	position: initial;
 	transform: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.icon {
+	    height: 40px;
+	    margin: 0 10px;
+	}
     }
 
     .controls {

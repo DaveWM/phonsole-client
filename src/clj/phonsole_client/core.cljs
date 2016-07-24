@@ -24,7 +24,8 @@
        [:nav {:class "purple"}
         [:a {:class "brand-logo"
              :href "/"}
-         "Phonsole"]
+         "Phonsole"
+         [:img {:class "icon" :src "images/phonsole.svg"}]]
         [:ul {:class "controls"}
          (connection-status (:open? @connection-state))
          [:span {:class "user-info"}
