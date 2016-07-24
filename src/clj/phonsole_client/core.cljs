@@ -37,6 +37,12 @@
         [(or @page loading)]]
        ])))
 
+(if (aget js/navigator "serviceWorker")
+  (-> js/navigator
+      .-serviceWorker
+      (.register "./js/serviceWorker.js")
+      (.then #(println "service worker registered"))))
+
 (defn main []
   (routing/start!)
   (dispatch-sync [:initialise])
