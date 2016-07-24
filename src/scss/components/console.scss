@@ -36,6 +36,12 @@
 	    .line {
 		margin: 0;
 		font-size: 18px;
+		.default-colour {
+		    color: white;
+		}
+		.default-background {
+		    background-color: black;
+		}
 	    }
 	}
     }
