@@ -2,7 +2,8 @@
   (:require [reagent.core :as r]
             [re-frame.core :refer [dispatch]]
             [phonsole-client.components.connection-status :refer [connection-status]]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [goog.string :as gstring]))
 
 (defn colour [colour]
   {:style {:color colour}})
@@ -51,8 +52,12 @@
          vec)))
 
 (defn line-to-hiccup [line]
-  (line-parts-to-hiccup (->> (str/split line #"(\[\d*m)")
-                             (remove empty?))))
+  (line-parts-to-hiccup (-> line
+                            (str/replace "\t" "&nbsp;&nbsp;")
+                            (str/replace " " "&nbsp;")
+                            (gstring/unescapeEntities)
+                            (str/split #"(\[\d*m)")
+                            (->> (remove empty?)))))
 
 (defn console-output [output]
   [:div {:class "output"}
