@@ -56,7 +56,7 @@
                             (str/replace "\t" "&nbsp;&nbsp;")
                             (str/replace " " "&nbsp;")
                             (gstring/unescapeEntities)
-                            (str/split #"(\[\d*m)")
+                            (str/split #"\u001B(\[\d*m)")
                             (->> (remove empty?)))))
 
 (defn console-output [output]
