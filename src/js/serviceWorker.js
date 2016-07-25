@@ -1,4 +1,4 @@
-var CACHE_NAME = 'cache-v1';
+var CACHE_NAME = 'cache-v2';
 var urlsToCache = [
   '/',
   '/index.html',
@@ -13,15 +13,22 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        return cache.addAll(urlsToCache)
+	  .then(() => console.log('added to cached'))
+	  .catch((err) => console.log('error adding to cache', err));
       })
   );
 });
 
 self.addEventListener('fetch', function(event) {
+  console.log('fetch');
+  cache.keys()
+    .then((keys) => console.log('keys:', keys))
+    .catch(err => console.log('keys err:', err));
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
+	console.log('cache hit');
         // Cache hit - return response
         if (response) {
           return response;
