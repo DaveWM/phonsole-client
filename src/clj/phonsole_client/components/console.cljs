@@ -80,7 +80,10 @@
     (r/create-class
      {:reagent-render (fn [client]
                         [:div {:class "console"}
-                         [:div {:class "card"}
+                         [:div {:class "card" :on-double-click #(do (.webkitExitFullscreen js/document)
+                                                                    (-> %
+                                                                        .-currentTarget
+                                                                        .webkitRequestFullscreen))}
                           [:div {:class "output-container"}
                            (console-output (:output client))]
                           [:div {:class "card-content"}
