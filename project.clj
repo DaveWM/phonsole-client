@@ -86,7 +86,7 @@
              }
 
   :resource {:resource-paths ["src/js"]
-             :target-path "resources/public/js"}
+             :target-path "resources/public"}
  
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:

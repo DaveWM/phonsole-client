@@ -40,7 +40,7 @@
 (if (aget js/navigator "serviceWorker")
   (-> js/navigator
       .-serviceWorker
-      (.register "./js/serviceWorker.js")
+      (.register "./serviceWorker.js" (clj->js {:scope "./"}))
       (.then #(println "service worker registered"))))
 
 (defn main []
