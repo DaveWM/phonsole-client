@@ -39,25 +39,34 @@
            (convert-index-map colours colour 30)
            (convert-index-map colours background 40))))
 
-(defn line-parts-to-hiccup [[first-part & other-parts :as parts]]
-  (if (empty? parts)
-    nil
-    (->> (if-let [[match group] (re-matches #"\[(\d*)m" first-part)]
-           (let [number (if (empty? group)
-                          0
-                          (js/parseInt group))]
-             [:span (or (get ansi-codes number) {}) (line-parts-to-hiccup other-parts)])
-           [:span first-part (line-parts-to-hiccup other-parts)])
-         (remove nil?)
-         vec)))
+(defmulti line-part-to-hiccup count)
+(defmethod line-part-to-hiccup
+  1
+  [[text]]
+  [:span text])
+(defmethod line-part-to-hiccup
+  2
+  [[escape-code text]]
+  (let [[match group] (re-matches #"\u001B\[(\d*)m" escape-code)
+             number (if (empty? group)
+                      0
+                      (js/parseInt group))]
+         [:span (or (get ansi-codes number) {}) text]))
+
+(defn get-hiccup-parts [line]
+  (let [[first & rest] (str/split line #"(\u001B\[\d*m)")]
+    (->> (partition-all 2 rest)
+         (cons [first])
+         (map line-part-to-hiccup))))
 
 (defn line-to-hiccup [line]
-  (line-parts-to-hiccup (-> line
-                            (str/replace "\t" "&nbsp;&nbsp;")
-                            (str/replace " " "&nbsp;")
-                            (gstring/unescapeEntities)
-                            (str/split #"\u001B(\[\d*m)")
-                            (->> (remove empty?)))))
+  (let [escaped (-> line
+                    (str/replace "\t" "&nbsp;&nbsp;")
+                    (str/replace " " "&nbsp;")
+                    (gstring/unescapeEntities))]
+    (->> (get-hiccup-parts escaped)
+         reverse
+         (reduce (fn [hiccup part] (conj part hiccup))))))
 
 (defn console-output [output]
   [:div {:class "output"}
