@@ -15,7 +15,8 @@
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
                  [com.taoensso/sente "1.8.1"]
-                 [environ "1.0.3"]]
+                 [environ "1.0.3"]
+                 [com.cognitect/transit-cljs "0.8.239"]]
   :npm {:dependencies [[materialize-css "0.97.6"]
                        [node-sass "3.8.0"]]}
   

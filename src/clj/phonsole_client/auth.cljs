@@ -1,5 +1,6 @@
 (ns phonsole-client.auth
-  (:require [cljsjs.auth0-lock]))
+  (:require [cljsjs.auth0-lock]
+            [phonsole-client.local-storage :as ls]))
 
 (def lock (js/Auth0Lock. "Qs4Ep1x2dZDZjiRuaZfys2JqEkRf9XVD" "dwmartin41.eu.auth0.com"))
 (def user-token-key :user-token)
@@ -19,21 +20,21 @@
     (aget hash "id_token")))
 
 (defn get-token []
-  (.getItem js/localStorage (name user-token-key)))
+  (ls/get user-token-key))
 
 (defn set-token! [token]
-  (.setItem js/localStorage (name user-token-key) token)
+  (ls/set! user-token-key token)
   token)
 
 (defn get-profile [token callback]
-  (.getProfile lock token (fn [err profile]
-                            (.setItem js/localStorage (name profile-key) profile)
-                            (callback err (js->clj profile :keywordize-keys true)))))
+  (.getProfile lock token (fn [err js-profile]
+                            (let [profile (js->clj js-profile :keywordize-keys true)]
+                              (callback err profile)))))
 
 (defn log-out! []
   (->> [user-token-key profile-key]
        (map name)
-       (map #(.removeItem js/localStorage %))))
+       (map ls/remove)))
 
 
 
