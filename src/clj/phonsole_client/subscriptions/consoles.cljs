@@ -9,7 +9,9 @@
                                    connected-clients)))
 
 (defn remove-console [db [_ id]]
-  (update db :connected-consoles dissoc id))
+  (-> db
+      (update :connected-consoles dissoc id)
+      (update :console-output dissoc id)))
 
 (defn output [db [_ {:keys [output sender]}]]
   (update-in db [:console-output (:client-id sender)] #(conj (vec %) output)))
@@ -18,4 +20,3 @@
   (reaction (->> (:connected-consoles @db)
                  (update-keys
                   (fn [client id] (assoc client :output (get-in @db [:console-output id])))))))
-
