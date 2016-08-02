@@ -75,6 +75,9 @@
        (->>
         (map #(identity [:p {:class "line"} (line-to-hiccup %)]))))])
 
+(defn scroll-to-bottom [elem]
+  (set! (.-scrollTop elem) (.-scrollHeight elem)))
+
 (defn console [client]
   (let [tailing (atom false)]
     (r/create-class
@@ -96,6 +99,15 @@
                                        :on-click #(dispatch [:remove-console (:client-id client)])}
                               "Close"])
                            [:span {:class "fill"}]
+                           (when (not @tailing)
+                             [:i {:class "material-icons icon-action"
+                                  :on-click #(-> %
+                                                 .-target
+                                                 .-parentElement
+                                                 .-parentElement
+                                                 (.querySelector ".output-container")
+                                                 scroll-to-bottom)}
+                              "fast_forward"])
                            [:i {:class "material-icons icon-action"
                                 :on-click #(-> %
                                                .-target
@@ -111,5 +123,4 @@
       :component-did-update (fn [this]
                               (let [elem (-> (r/dom-node this)
                                              (.querySelector ".output-container"))]
-                                (when @tailing
-                                  (set! (.-scrollTop elem) (.-scrollHeight elem)))))})))
+                                (when @tailing (scroll-to-bottom elem))))})))
