@@ -13,7 +13,7 @@
       (update :connected-consoles dissoc id)
       (update :console-output dissoc id)))
 
-(def output-limit 5000)
+(def output-limit 2500)
 
 (defn output [db [_ {:keys [output sender]}]]
   (update-in db [:console-output (:client-id sender)] #(->> (conj % output)
