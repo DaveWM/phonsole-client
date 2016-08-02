@@ -32,7 +32,9 @@
           [:img {:src (:picture @user) :class "circle responsive-img user-icon"}]
           [:span (:name @user)]]
          [:button {:class "btn purple lighten-2"
-                   :on-click #(dispatch [:log-out])} "Log out"]]]
+                   :on-click #(dispatch [:log-out])} "Log out"]
+         [:a {:href "/help"}
+          [:i {:class "material-icons"} "help_outline"]]]]
        [:div {:class "container"}
         [(or @page loading)]]
        ])))

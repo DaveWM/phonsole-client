@@ -3,11 +3,14 @@
             [pushy.core :as pushy]
             [phonsole-client.auth :refer [parse-id-token]]
             [re-frame.core :refer [dispatch]]
-            [phonsole-client.pages.home :refer [home-page]])
+            [phonsole-client.pages.home :refer [home-page]]
+            [phonsole-client.pages.help :refer [help-page]])
   (:import goog.history.Html5History))
 
 (defroute "/" []
   (dispatch [:set-page home-page]))
+(defroute "/help" []
+  (dispatch [:set-page help-page]))
 (defroute "*" []
   (dispatch [:set-page (fn []
                          [:p "Page Not found"])]))
