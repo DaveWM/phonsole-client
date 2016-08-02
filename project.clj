@@ -1,8 +1,8 @@
-(defproject phonsole-client "0.1.0-SNAPSHOT"
-  :description "FIXME: write this!"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+(defproject phonsole-client "0.1.0"
+  :description "The client for the phonsole application"
+  :url "https://www.phonsole.co.uk"
+  :license {:name "GNU Public License V3"
+            :url "https://www.gnu.org/licenses/gpl-3.0.en.html"}
 
   :min-lein-version "2.6.1"
   
