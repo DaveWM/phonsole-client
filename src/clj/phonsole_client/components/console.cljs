@@ -81,22 +81,22 @@
 (defn console [client]
   (let [tailing (atom false)]
     (r/create-class
-     {:reagent-render (fn [client]
+     {:reagent-render (fn [{:keys [output client-id disconnected?]}]
                         [:div {:class "console"}
                          [:div {:class "card" :on-double-click #(do (.webkitExitFullscreen js/document)
                                                                     (-> %
                                                                         .-currentTarget
                                                                         .webkitRequestFullscreen))}
                           [:div {:class "output-container"}
-                           (console-output (:output client))]
+                           (console-output output)]
                           [:div {:class "card-content"}
                            [:p {:class "card-title"}
-                            [:span {:class "margin-horizontal"} (:client-id client)]
-                            (connection-status (not (:disconnected? client)))]]
+                            [:span {:class "margin-horizontal"} client-id]
+                            (connection-status (not disconnected?))]]
                           [:div {:class "card-action"}
-                           (when (:disconnected? client)
+                           (when disconnected?
                              [:button {:class "btn btn-flat"
-                                       :on-click #(dispatch [:remove-console (:client-id client)])}
+                                       :on-click #(dispatch [:remove-console client-id])}
                               "Close"])
                            [:span {:class "fill"}]
                            (when (not @tailing)
