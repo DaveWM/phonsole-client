@@ -15,7 +15,18 @@
 	    .output-container {
 		max-height: initial;
 	    }
-	    .card-action {
+	    .card-action, .card-content {
+		padding: 10px;
+	    }
+	    .card-secondary-content {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 10px;
+	    }
+
+	    .icon-action.close {
 		display: none;
 	    }
 	}
@@ -50,6 +61,7 @@
     .card-action {
 	display: flex;
 	justify-content: flex-start;
+	align-items: center;
 	.icon-action {
 	    cursor: pointer;
 	    margin: 0 10px;

@@ -89,32 +89,35 @@
                                                                         .webkitRequestFullscreen))}
                           [:div {:class "output-container"}
                            (console-output output)]
-                          [:div {:class "card-content"}
-                           [:p {:class "card-title"}
-                            [:span {:class "margin-horizontal"} client-id]
-                            (connection-status (not disconnected?))]]
-                          [:div {:class "card-action"}
-                           (when disconnected?
-                             [:button {:class "btn btn-flat"
-                                       :on-click #(dispatch [:remove-console client-id])}
-                              "Close"])
-                           [:span {:class "fill"}]
-                           (when (not @tailing)
-                             [:i {:class "material-icons icon-action"
-                                  :on-click #(-> %
-                                                 .-target
-                                                 .-parentElement
-                                                 .-parentElement
-                                                 (.querySelector ".output-container")
-                                                 scroll-to-bottom)}
-                              "fast_forward"])
-                           [:i {:class "material-icons icon-action"
-                                :on-click #(-> %
-                                               .-target
-                                               .-parentElement
-                                               .-parentElement
-                                               .webkitRequestFullscreen)}
-                            "open_with"]]]
+                          [:div {:class "card-secondary-content"}
+                           [:div {:class "card-content"}
+                            [:p {:class "card-title"}
+                             [:span {:class "margin-horizontal"} client-id]
+                             (connection-status (not disconnected?))]]
+                           [:div {:class "card-action"}
+                            (when disconnected?
+                              [:button {:class "btn btn-flat"
+                                        :on-click #(dispatch [:remove-console client-id])}
+                               "Close"])
+                            [:span {:class "fill"}]
+                            (when (not @tailing)
+                              [:i {:class "material-icons icon-action"
+                                   :on-click #(-> %
+                                                  .-target
+                                                  .-parentElement
+                                                  .-parentElement
+                                                  .-parentElement
+                                                  (.querySelector ".output-container")
+                                                  scroll-to-bottom)}
+                               "fast_forward"])
+                            [:i {:class "material-icons icon-action full-screen"
+                                 :on-click #(-> %
+                                                .-target
+                                                .-parentElement
+                                                .-parentElement
+                                                .-parentElement
+                                                .webkitRequestFullscreen)}
+                             "open_with"]]]]
                          ])
       :component-will-update (fn [this]
                                (let [elem (-> (r/dom-node this)
