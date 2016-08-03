@@ -79,7 +79,7 @@
   (set! (.-scrollTop elem) (.-scrollHeight elem)))
 
 (defn console [client]
-  (let [tailing (atom false)]
+  (let [tailing (r/atom true)]
     (r/create-class
      {:reagent-render (fn [{:keys [output client-id disconnected?]}]
                         [:div {:class "console"}
@@ -87,7 +87,10 @@
                                                                     (-> %
                                                                         .-currentTarget
                                                                         .webkitRequestFullscreen))}
-                          [:div {:class "output-container"}
+                          [:div {:class "output-container"
+                                 :on-scroll (fn [ev]
+                                              (let [elem (.-currentTarget ev)]
+                                                (reset! tailing (<= (.-scrollHeight elem) (+ (.-scrollTop elem) (.-offsetHeight elem))))))}
                            (console-output output)]
                           [:div {:class "card-secondary-content"}
                            [:div {:class "card-content"}
@@ -119,10 +122,6 @@
                                                 .webkitRequestFullscreen)}
                              "open_with"]]]]
                          ])
-      :component-will-update (fn [this]
-                               (let [elem (-> (r/dom-node this)
-                                              (.querySelector ".output-container"))]
-                                 (reset! tailing (<= (.-scrollHeight elem) (+ (.-scrollTop elem) (.-offsetHeight elem))))))
       :component-did-update (fn [this]
                               (let [elem (-> (r/dom-node this)
                                              (.querySelector ".output-container"))]
