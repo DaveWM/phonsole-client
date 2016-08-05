@@ -2,6 +2,8 @@
 
 The client for the phonsole application.
 
+![Screenshot](screenshots/screenshot1.png)
+
 ## Deploying
 
 To deploy the client:
