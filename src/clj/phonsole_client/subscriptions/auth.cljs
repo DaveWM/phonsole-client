@@ -7,8 +7,8 @@
   (:require-macros [reagent.ratom :refer [reaction]]))
 
 (defn profile-retrieved [db [_ profile]]
-  (assoc db profile-key profile)
-  (ls/set! profile-key profile))
+  (ls/set! profile-key profile)
+  (assoc db profile-key profile))
 
 (defn log-out [db _]
    (log-out!)
