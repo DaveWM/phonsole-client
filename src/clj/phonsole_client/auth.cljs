@@ -32,9 +32,9 @@
                               (callback err profile)))))
 
 (defn log-out! []
-  (->> [user-token-key profile-key]
-       (map name)
-       (map ls/remove)))
+  (doseq [name (->> [user-token-key profile-key]
+                    (map name))]
+    (ls/delete name)))
 
 
 
