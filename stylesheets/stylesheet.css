@@ -9,17 +9,21 @@ body {
   line-height: 1.5;
   color: #606c71; }
 
+h1 a{
+    color: white;
+}
 a {
   color: #1e6bb8;
   text-decoration: none; }
   a:hover {
     text-decoration: underline; }
 
-.btn {
+  .btn {
+      cursor: pointer;
   display: inline-block;
   margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(142,36,170, 0.5);
   border-color: rgba(255, 255, 255, 0.2);
   border-style: solid;
   border-width: 1px;
@@ -31,7 +35,7 @@ a {
 .btn:hover {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(142,36,170, 0.2);
   border-color: rgba(255, 255, 255, 0.3); }
 
 @media screen and (min-width: 64em) {
@@ -57,7 +61,7 @@ a {
   color: #fff;
   text-align: center;
   background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
+  background-image: linear-gradient(120deg, #9c27b0, #E1BEE7); }
 
 @media screen and (min-width: 64em) {
   .page-header {
@@ -112,9 +116,13 @@ a {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #159957; }
+  color: #8E24AA; }
 .main-content p {
-  margin-bottom: 1em; }
+    margin-bottom: 1em; }
+.main-content p.lead {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
 .main-content code {
   padding: 2px 4px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
