@@ -18,7 +18,8 @@
 (defn root-component []
   (let [page (subscribe [:page])
         user (subscribe [:user-details])
-        connection-state (subscribe [:connection-state])]
+        connection-state (subscribe [:connection-state])
+        show-avatar (r/atom true)]
     (fn []
       [:div
        [:nav {:class "purple"}
@@ -29,7 +30,8 @@
         [:ul {:class "controls"}
          (connection-status (:open? @connection-state))
          [:span {:class "user-info"}
-          [:img {:src (:picture @user) :class "circle responsive-img user-icon"}]
+          (when @show-avatar
+            [:img {:src (:picture @user) :class "circle responsive-img user-icon" :on-error #(reset! show-avatar false)}])
           [:span (:name @user)]]
          [:button {:class "btn purple lighten-2"
                    :on-click #(dispatch [:log-out])} "Log out"]
