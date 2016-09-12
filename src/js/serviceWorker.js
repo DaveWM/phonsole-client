@@ -36,7 +36,10 @@ self.addEventListener('install', function(event) {
     '/',
     '/css/app.css',
     '/js/app.js',
-    '/images/phonsole.svg'
+    '/images/phonsole.svg',
+    '/fonts/MaterialIcons-Regular.woff2',
+    '/fonts/MaterialIcons-Regular.woff',
+    '/fonts/MaterialIcons-Regular.ttf'
   ];
   // All of these logging statements should be visible via the "Inspect" interface
   // for the relevant SW accessed via chrome://serviceworker-internals
