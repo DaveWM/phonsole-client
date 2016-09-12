@@ -14,7 +14,7 @@
                  [cljsjs/auth0-lock "8.3.2-2"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
-                 [com.taoensso/sente "1.8.1"]
+                 [com.taoensso/sente "1.10.0"]
                  [environ "1.0.3"]
                  [com.cognitect/transit-cljs "0.8.239"]]
   :npm {:dependencies [[materialize-css "0.97.6"]
