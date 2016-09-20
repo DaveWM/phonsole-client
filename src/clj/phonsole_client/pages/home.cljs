@@ -6,11 +6,12 @@
 (defn home-page []
   (let [clients (subscribe [:connected-consoles])]
     (fn []
-      [:div
-       [:h2 "All Connected Consoles"]
-       [:div {:class "flex align-space-around wrap"}
+      [:div {:class "home-page"}
+       [:h4 "All Connected Consoles"]
+       [:div {:class "flex justify-space-around wrap"}
         (if (empty? @clients)
-          [:p "No Consoles connected"]
+          [:p {:class "no-consoles"} "You don't have any consoles connected to phonsole at the moment. For help getting started, see the instructions on the "
+           [:a {:href "/help"} "Help Page."]]
           (map (fn [[client-id client]]
                  [console client])
                     @clients))]])))
