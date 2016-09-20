@@ -113,6 +113,11 @@ a {
   .project-tagline {
     font-size: 1rem; } }
 
+form.donate {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .main-content :first-child {
   margin-top: 0; }
 .main-content img {
