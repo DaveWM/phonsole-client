@@ -3,6 +3,13 @@
 (defn code [code]
   [:span {:class "code"} code])
 
+(def donate-form
+  [:form {:class "donate" :action "https://www.paypal.com/cgi-bin/webscr" :method "post" :target "_top"}
+   [:input {:type "hidden" :name "cmd" :value "_s-xclick"}]
+   [:input {:type "hidden" :name "hosted_button_id" :value "YAWEHBVH2Q3XE"}]
+   [:input {:type "image" :src "https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" :border "0" :name "submit" :alt "Donate"}]
+   [:img {:boder "0" :src "https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" :width "1" :height "1"}]])
+
 (defn help-page []
   [:div {:class "help-page"}
    [:h2 "Help"]
@@ -16,8 +23,9 @@
    [:h4 "Adding to your home screen"]
    [:p "Phonsole is a " [:a {:href "https://developers.google.com/web/progressive-web-apps/"} "progressive web app"] ", so you can add it to your home screen and use it like a normal app. When you visit this site 2 or 3 times, you should be shown a banner asking you to add the app to your home screen. If this doesn't appear, you can add it manually by following " [:a {:href "http://www.howtogeek.com/196087/how-to-add-websites-to-the-home-screen-on-any-smartphone-or-tablet/"} "this guide."]]
    [:h4 "Open Source"]
-   [:p "Phonsole is completely open source, and hosted on GitHub. It's split into 3 parts: "
+   [:p "Phonsole is completely free and open source, and hosted on GitHub. It's split into 3 parts: "
     [:a {:href "https://github.com/DaveWM/phonsole-client"} "client"] ", "
     [:a {:href "https://github.com/DaveWM/phonsole-server"} "server"] " and "
     [:a {:href "https://github.com/DaveWM/phonsole-cli"} "CLI"] ". "
-    "All feature requests, bug reports and PRs are welcome."]])
+    "All feature requests, bug reports and PRs are welcome. If you'd like to donate towards the development of phonsole, please click the button below."]
+   donate-form])
