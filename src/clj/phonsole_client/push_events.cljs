@@ -3,7 +3,7 @@
             [re-frame.core :refer [dispatch]]
             [cljs.core.async :refer [<! close!]])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]
-                   [phonsole-client.macros.env-vars :refer [env-var]]))
+                   [phonsole-client.macros.config :refer [config]]))
 
 (def allowed-event-types #{:clients/connected :sender/output})
 
@@ -18,11 +18,10 @@
 (defn start-listening! [token]
   "Starts listening to the sente channel. Returns a function that disconnects from the channel"
   (when (nil? @channel)
-    (print "start listening" (env-var :server-url))
+    (print "start listening" (config :server-url))
     (let [{chsk :chsk ch-chsk :ch-recv chsk-send! :send-fn chsk-state :state} (sente/make-channel-socket! "/chsk" ; Note the same path as before
                                                                                                           {:type :auto
-                                                                                                           :host (or (env-var :server-url)
-                                                                                                                     "localhost:8080")
+                                                                                                           :host (config :server-url)
                                                                                                            :params {:Authorization token
                                                                                                                     :is-viewer true}})
           event-loop (go-loop []
