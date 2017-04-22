@@ -46,8 +46,12 @@
 	    overflow: auto;
 	    min-height: 100%;
 	    .line {
+		$line-height: 27px;
 		margin: 0;
 		font-size: 18px;
+		line-height: $line-height;
+		min-height: $line-height;
+		
 		.default-colour {
 		    color: white;
 		}

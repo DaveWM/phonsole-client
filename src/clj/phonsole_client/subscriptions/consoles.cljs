@@ -1,7 +1,8 @@
 (ns phonsole-client.subscriptions.consoles
   (:require [re-frame.core :refer [register-handler register-sub]]
             [phonsole-client.utils :refer [update-keys]])
-  (:require-macros [reagent.ratom :refer [reaction]]))
+  (:require-macros [reagent.ratom :refer [reaction]])
+  (:import [goog.date DateTime]))
 
 (defn connected [db [_ {:keys [connected-clients]}]]
   (update db :connected-consoles #(merge
@@ -16,7 +17,8 @@
 (def output-limit 2500)
 
 (defn output [db [_ {:keys [output sender]}]]
-  (update-in db [:console-output (:client-id sender)] #(->> (conj % output)
+  (update-in db [:console-output (:client-id sender)] #(->> (conj % {:text output :timestamp (-> (DateTime.)
+                                                                                                 (.getTime))})
                                                             (take-last output-limit)
                                                             vec)))
 

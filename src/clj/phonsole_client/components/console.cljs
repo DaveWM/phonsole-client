@@ -71,9 +71,10 @@
 (defn console-output [output]
   [:div {:class "output"}
    (-> (vec output)
-       (conj ">_")
-       (->>
-        (map #(identity [:p {:class "line"} (line-to-hiccup %)]))))])
+       (conj {:text ">_" :timestamp -1})
+       (->> (map-indexed (fn [idx {:keys [text timestamp]}]
+                           ^{:key (str timestamp "::" (if-not (str/blank? text) text idx))}
+                           [:p {:class "line"} (line-to-hiccup text)]))))])
 
 (defn scroll-to-bottom [elem]
   (set! (.-scrollTop elem) (.-scrollHeight elem)))
@@ -91,7 +92,7 @@
                                  :on-scroll (fn [ev]
                                               (let [elem (.-currentTarget ev)]
                                                 (reset! tailing (<= (.-scrollHeight elem) (+ (.-scrollTop elem) (.-offsetHeight elem))))))}
-                           (console-output output)]
+                           [console-output output]]
                           [:div {:class "card-secondary-content"}
                            [:div {:class "card-content"}
                             [:p {:class "card-title"}

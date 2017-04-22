@@ -13,5 +13,5 @@
           [:p {:class "no-consoles"} "You don't have any consoles connected to phonsole at the moment. For help getting started, see the instructions on the "
            [:a {:href "/help"} "Help Page."]]
           (map (fn [[client-id client]]
-                 [console client])
+                 ^{:key (:client-id client)} [console client])
                     @clients))]])))
