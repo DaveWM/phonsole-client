@@ -82,47 +82,37 @@
 (defn console [client]
   (let [tailing (r/atom true)]
     (r/create-class
-     {:reagent-render (fn [{:keys [output client-id disconnected?]}]
-                        [:div {:class "console"}
-                         [:div {:class "card" :on-double-click #(do (.webkitExitFullscreen js/document)
-                                                                    (-> %
-                                                                        .-currentTarget
-                                                                        .webkitRequestFullscreen))}
-                          [:div {:class "output-container"
-                                 :on-scroll (fn [ev]
-                                              (let [elem (.-currentTarget ev)]
-                                                (reset! tailing (<= (.-scrollHeight elem) (+ (.-scrollTop elem) (.-offsetHeight elem))))))}
-                           [console-output output]]
-                          [:div {:class "card-secondary-content"}
-                           [:div {:class "card-content"}
-                            [:p {:class "card-title"}
-                             [:span {:class "margin-horizontal"} client-id]
-                             (connection-status (not disconnected?))]]
-                           [:div {:class "card-action"}
-                            (when disconnected?
-                              [:button {:class "btn btn-flat"
-                                        :on-click #(dispatch [:remove-console client-id])}
-                               "Close"])
-                            [:span {:class "fill"}]
-                            (when (not @tailing)
-                              [:i {:class "material-icons icon-action"
-                                   :on-click #(-> %
-                                                  .-target
-                                                  .-parentElement
-                                                  .-parentElement
-                                                  .-parentElement
-                                                  (.querySelector ".output-container")
-                                                  scroll-to-bottom)}
-                               "fast_forward"])
-                            [:i {:class "material-icons icon-action full-screen"
-                                 :on-click #(-> %
-                                                .-target
-                                                .-parentElement
-                                                .-parentElement
-                                                .-parentElement
-                                                .webkitRequestFullscreen)}
-                             "open_with"]]]]
-                         ])
+     {:render (fn [this]
+                (let [{:keys [output client-id disconnected?]} (r/props this)]
+                  [:div {:class "console"}
+                   [:div {:class "card" :on-double-click #(do (.webkitExitFullscreen js/document))}
+                    [:div {:class "output-container"
+                           :on-scroll (fn [ev]
+                                        (let [elem (.-currentTarget ev)]
+                                          (reset! tailing (<= (.-scrollHeight elem) (+ (.-scrollTop elem) (.-offsetHeight elem))))))}
+                     [console-output output]]
+                    [:div {:class "card-secondary-content"}
+                     [:div {:class "card-content"}
+                      [:p {:class "card-title"}
+                       [:span {:class "margin-horizontal"} client-id]
+                       (connection-status (not disconnected?))]]
+                     [:div {:class "card-action"}
+                      (when disconnected?
+                        [:button {:class "btn btn-flat"
+                                  :on-click #(dispatch [:remove-console client-id])}
+                         "Close"])
+                      [:span {:class "fill"}]
+                      (when (not @tailing)
+                        [:i {:class "material-icons icon-action"
+                             :on-click #(-> (r/dom-node this)
+                                            (.querySelector ".output-container")
+                                            scroll-to-bottom)}
+                         "fast_forward"])
+                      [:i {:class "material-icons icon-action full-screen"
+                           :on-click #(-> (r/dom-node this)
+                                          .webkitRequestFullscreen)}
+                       "open_with"]]]]
+                   ]))
       :component-did-update (fn [this]
                               (let [elem (-> (r/dom-node this)
                                              (.querySelector ".output-container"))]

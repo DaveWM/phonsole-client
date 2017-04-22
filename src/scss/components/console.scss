@@ -6,30 +6,38 @@
     padding-right: 15px;
     max-width: 100%;
 
+    &:-webkit-full-screen {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+
+	.card {
+	    height: 100%;
+	    width: 100%;
+	    margin: 0;
+	}
+	.output-container {
+	    max-height: initial;
+	}
+	.card-action, .card-content {
+	    padding: 10px;
+	}
+	.card-secondary-content {
+	    display: flex;
+	    flex-direction: row;
+	    align-items: center;
+	    justify-content: space-between;
+	    padding: 0 10px;
+	}
+
+	.icon-action.full-screen {
+	    display: none;
+	}
+    }
+
     .card {
 	display: flex;
 	flex-direction: column;
-	&:-webkit-full-screen {
-	    width: 100%;
-	    height: 100%;
-	    .output-container {
-		max-height: initial;
-	    }
-	    .card-action, .card-content {
-		padding: 10px;
-	    }
-	    .card-secondary-content {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0 10px;
-	    }
-
-	    .icon-action.full-screen {
-		display: none;
-	    }
-	}
     }
     .output-container {
 	max-height: 350px;
