@@ -27,5 +27,4 @@
     [:a {:href "https://github.com/DaveWM/phonsole-client"} "client"] ", "
     [:a {:href "https://github.com/DaveWM/phonsole-server"} "server"] " and "
     [:a {:href "https://github.com/DaveWM/phonsole-cli"} "CLI"] ". "
-    "All feature requests, bug reports and PRs are welcome. If you'd like to donate towards the development of phonsole, please click the button below."]
-   donate-form])
+    "All feature requests, bug reports and PRs are welcome."]])
