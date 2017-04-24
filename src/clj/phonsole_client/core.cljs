@@ -52,7 +52,8 @@
  (fn [] (let [ad-service (-> js/Cocoon .-Ad .-AdMob)]
           (do
             (.configure ad-service (clj->js {:android {:banner "ca-app-pub-4963578071993754/4857651620"}}))
-            (.createBanner ad-service))))
+            (let [banner (.createBanner ad-service)]
+              (.on banner "load" #(.show banner))))))
  false)
 
 (defn main []
