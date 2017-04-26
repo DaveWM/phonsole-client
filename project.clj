@@ -50,8 +50,7 @@
                 :compiler {:output-to "resources/public/js/app.js"
                            :main phonsole-client.core
                            :optimizations :advanced
-                           :pretty-print false
-                           :externs ["externs.js"]}}]}
+                           :pretty-print false}}]}
 
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
              ;; :server-port 3449 ;; default

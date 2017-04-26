@@ -47,16 +47,6 @@
       (.register "./serviceWorker.js" (clj->js {:scope "./"}))
       (.then #(println "service worker registered"))))
 
-(js/document.addEventListener
- "deviceready"
- (fn [] (let [ad-service (-> js/Cocoon .-Ad .-AdMob)]
-          (do
-            (.configure ad-service (clj->js {:android {:banner "ca-app-pub-4963578071993754/4857651620"}}))
-            (let [banner(.createBanner ad-service)] 
-              (.show banner)
-              ((aget banner "on") "load" #(.show banner))))))
- false)
-
 (defn main []
   (routing/start!)
   (dispatch-sync [:initialise])
