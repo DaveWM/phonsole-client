@@ -68,13 +68,16 @@
        reverse
        (reduce (fn [hiccup part] (conj part hiccup)))))
 
+(defn console-output-line [line]
+  [:p {:class "line"} (line-to-hiccup line)])
+
 (defn console-output [output]
   [:div {:class "output"}
    (-> (vec output)
        (conj {:text ">_" :timestamp -1})
        (->> (map-indexed (fn [idx {:keys [text timestamp]}]
                            ^{:key (str timestamp "::" (if-not (str/blank? text) text idx))}
-                           [:p {:class "line"} (line-to-hiccup text)]))))])
+                           [console-output-line text]))))])
 
 (defn scroll-to-bottom [elem]
   (set! (.-scrollTop elem) (.-scrollHeight elem)))
